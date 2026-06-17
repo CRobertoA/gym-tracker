@@ -55,6 +55,7 @@ class ExerciseController extends Controller
     public function edit(Exercise $exercise)
     {
         //
+        return view('exercises.edit', compact('exercise'));
     }
 
     /**
@@ -63,6 +64,13 @@ class ExerciseController extends Controller
     public function update(Request $request, Exercise $exercise)
     {
         //
+        $validated = $request->validate([
+            'name' => 'required|max:255',
+            'description' => 'nullable'
+        ]);
+        $exercise->update($validated);
+
+        return redirect()->route('exercises.index')->with('success', 'Ejercicio actualizado con exito.');
     }
 
     /**
@@ -71,5 +79,8 @@ class ExerciseController extends Controller
     public function destroy(Exercise $exercise)
     {
         //
+        $exercise->delete();
+
+        return redirect()->route('exercises.index')->with('success', 'Ejercicio eliminado con exito.');
     }
 }
