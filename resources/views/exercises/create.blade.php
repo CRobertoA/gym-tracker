@@ -27,13 +27,13 @@
                                 Nombre
                             </label>
                             <input type="text" name="name" value="{{ old('name') }}" class="w-full bg-gray-900 text-gray-300 
-                                border rounded-lg p-2" placeholder="Nombre del ejercicio.">
+                                border rounded-md p-2" placeholder="Nombre del ejercicio.">
                         </div>
                         <div class="mb-4">
                             <label class="block mb-2">
                                 Descripción
                             </label>
-                            <textarea name="description" class="w-full bg-gray-900 text-gray-300 border rounded-lg p-2"
+                            <textarea name="description" class="w-full bg-gray-900 text-gray-300 border rounded-md p-2"
                                 placeholder="Breve descripción." rows="4">{{ old('description') }}</textarea>
                         </div>
                         <div class="flex gap-3">

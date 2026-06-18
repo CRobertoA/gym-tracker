@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ExerciseController;
+use App\Http\Controllers\WorkoutController;
 use Illuminate\Support\Facades\Route;
 use App\Models\Exercise;
 
@@ -21,6 +22,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     Route::resource('exercises', ExerciseController::class);
+    Route::resource('workouts', WorkoutController::class);
 });
 
 require __DIR__.'/auth.php';

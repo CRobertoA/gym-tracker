@@ -14,4 +14,8 @@ class Exercise extends Model
         'name',
         'description'
     ];
+
+    public function workouts(){
+        return $this->belongsToMany(Workout::class);
+    }
 }
