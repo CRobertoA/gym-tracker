@@ -3,6 +3,9 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ExerciseController;
 use App\Http\Controllers\WorkoutController;
+use App\Http\Controllers\WorkoutSetController;
+use App\Http\Controllers\WorkoutSessionController;
+use APP\Models\Workout;
 use Illuminate\Support\Facades\Route;
 use App\Models\Exercise;
 
@@ -23,6 +26,10 @@ Route::middleware('auth')->group(function () {
 
     Route::resource('exercises', ExerciseController::class);
     Route::resource('workouts', WorkoutController::class);
+    Route::post('/workouts/{workout}/start', [WorkoutController::class, 'start'])->name('workouts.start');
+    Route::get('/sessions/{session}', [WorkoutSessionController::class, 'show'])->name('sessions.show');
+    Route::post('/sessions/{session}/sets', [WorkoutSetController::class, 'store'])->name('sets.store');
+    Route::patch('/sessions/{session}/finish', [WorkoutSessionController::class, 'finish'])->name('sessions.finish');
 });
 
 require __DIR__.'/auth.php';

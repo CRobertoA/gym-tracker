@@ -16,4 +16,8 @@ class Workout extends Model
     public function exercises(): BelongsToMany{
         return $this->belongsToMany(Exercise::class);
     }
+
+    public function sessions(){
+        return $this->hasMany(WorkoutSession::class);
+    }
 }

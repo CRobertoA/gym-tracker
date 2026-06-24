@@ -18,4 +18,8 @@ class Exercise extends Model
     public function workouts(){
         return $this->belongsToMany(Workout::class);
     }
+
+     public function workoutSets(){
+        return $this->hasMany(WorkoutSet::class);
+    }
 }

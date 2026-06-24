@@ -29,7 +29,7 @@
                         </p>
                         <div class="mt-2">
                             @foreach($workout->exercises as $exercise)
-                                <span class="inline-block bg-purple-600 text-white text-sm px-2 py-1 rounded mr-2 mb-2">
+                                <span class="inline-block bg-purple-600 text-gray-200 text-sm px-2 py-1 rounded mr-2 mb-2">
                                     {{ $exercise->name }}
                                 </span>
                             @endforeach
@@ -44,6 +44,12 @@
 
                             <button type="submit" class="mx-3 text-red-500 hover:text-red-700" onclick="return confirm('¿Eliminar entrenamiento?')">
                                 Eliminar
+                            </button>
+                        </form>
+                        <form action="{{  route('workouts.start', $workout) }}" method="POST">
+                            @csrf
+                            <button class="bg-green-600 text-gray-200 px-4 py-2 mt-4 rounded hover:bg-green-700">
+                                Comenzar entrenamiento
                             </button>
                         </form>
                     </div>

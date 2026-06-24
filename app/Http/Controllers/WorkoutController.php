@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Workout;
 use App\Models\Exercise;
+use App\Models\WorkoutSession;
 use Illuminate\Http\Request;
 
 class WorkoutController extends Controller
@@ -106,5 +107,14 @@ class WorkoutController extends Controller
         //opcionalmente se pone $workout->exercises()->detach(); para eliminar tambien las relaciones en la tabla pivote
 
         return redirect()->route('workouts.index')->with('success', 'Entrenamiento eliminado con exito.');
+    }
+
+    public function start(Workout $workout){
+        $session = WorkoutSession::create([
+            'workout_id' => $workout->id,
+            'started_at' => now()
+        ]);
+
+        return redirect()->route('sessions.show', $session);
     }
 }
