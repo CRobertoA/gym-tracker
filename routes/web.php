@@ -30,6 +30,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/sessions/{session}', [WorkoutSessionController::class, 'show'])->name('sessions.show');
     Route::post('/sessions/{session}/sets', [WorkoutSetController::class, 'store'])->name('sets.store');
     Route::patch('/sessions/{session}/finish', [WorkoutSessionController::class, 'finish'])->name('sessions.finish');
+    Route::get('/sessions', [WorkoutSessionController::class, 'index'])->name('sessions.index');
+    Route::get('/exercises/{exercise}/stats', [ExerciseController::class, 'stats'])->name('exercises.stats');
 });
 
 require __DIR__.'/auth.php';

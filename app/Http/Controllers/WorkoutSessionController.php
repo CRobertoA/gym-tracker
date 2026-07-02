@@ -13,6 +13,11 @@ class WorkoutSessionController extends Controller
     public function index()
     {
         //
+        $sessions = WorkoutSession::with([
+            'workout'
+        ])->withCount('sets')->latest()->get();
+
+        return view('sessions.index', compact('sessions'));
     }
 
     /**

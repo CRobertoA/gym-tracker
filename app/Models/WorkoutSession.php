@@ -13,6 +13,11 @@ class WorkoutSession extends Model
         'completed_at'
     ];
 
+    protected $casts = [
+        'started_at' => 'datetime',
+        'completed_at' => 'datetime',
+    ];
+
     public function workout(){
         return $this->belongsTo(Workout::class);
     }

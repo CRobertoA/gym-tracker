@@ -83,4 +83,30 @@ class ExerciseController extends Controller
 
         return redirect()->route('exercises.index')->with('success', 'Ejercicio eliminado con exito.');
     }
+
+    public function stats(Exercise $exercise)
+    {
+        $sets = $exercise->workoutSets()->with('session')->orderBy('created_at')->get();
+
+        /*$progressData = $sets->groupBy('workout_session_id')->map(function ($sessionSet){
+            return $sessionSet->max('weight');
+        });*/
+
+        $chartData = $sets->groupBy('workout_session_id')->map(function ($sessionSet){
+            $firstSet = $sessionSet->first();
+            //dd($firstSet->session->started_at);
+            return [
+                'date' => $firstSet->session->started_at->format('d/m'),
+                'weight' => $sessionSet->max('weight')
+            ];
+        })->values();
+        
+        $bestWeight = $sets->max('weight');
+        $totalSets = $sets->count();
+        $averageReps = round($sets->avg('reps'), 1);
+        $lastSet = $sets->first();
+
+        return view('exercises.stats', compact('exercise', 'bestWeight', 'totalSets', 'averageReps', 
+            'lastSet', 'chartData'));
+    }
 }

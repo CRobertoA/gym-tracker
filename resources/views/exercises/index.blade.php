@@ -54,15 +54,19 @@
                                     </td>
                                     <td class="p-4 ">
                                         <a href="{{ route('exercises.edit', $exercise) }}"
-                                            class="text-blue-600 hover:text-blue-700 mr-4">
+                                            class="text-blue-500 hover:text-blue-700 mr-4">
                                             Editar
-                                        </a>    
+                                        </a>  
+                                        <a href="{{ route('exercises.stats', $exercise) }}"
+                                            class="text-green-500 hover:text-green-700 mr-4">
+                                            Stats
+                                        </a>  
                                         <form action="{{ route('exercises.destroy', $exercise) }}"
                                                 method="POST" class="inline">
                                             @csrf
                                             @method('DELETE')
 
-                                            <button type="submit" class="text-red-600 hover:text-red-700" onclick="return confirm('¿Eliminar ejercicio?')">
+                                            <button type="submit" class="text-red-500 hover:text-red-700" onclick="return confirm('¿Eliminar ejercicio?')">
                                                 Eliminar
                                             </button>
                                         </form>
